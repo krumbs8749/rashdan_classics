@@ -32,11 +32,7 @@ export const metadata: Metadata = {
   description: "Discover and purchase timeless number plates with Rashdan Classics.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout () {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${robotoMedium.variable}`}>
@@ -51,9 +47,6 @@ export default function RootLayout({
         <PlatesGrid />
         <AboutSection />
         <UpdateSection />
-          
-          {/* Page Content */}
-          {children}
         </main>
 
         {/* Use Footer Component */}
