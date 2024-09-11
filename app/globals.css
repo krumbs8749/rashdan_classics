@@ -183,3 +183,23 @@ body {
 .footer-links li a:hover {
   text-decoration: underline;
 }
+
+
+/* Custom Swiper Pagination Styles */
+/* You can add this CSS to your global stylesheet or a CSS module */
+
+.swiper-pagination-bullets {
+  bottom: 10px !important; /* Adjust the position */
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  opacity: 1;
+  transition: background 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background: #000;
+}

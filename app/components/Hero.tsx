@@ -1,7 +1,11 @@
+'use client';
 import React from 'react';
 import { Box, Typography, Button, TextField, Container } from '@mui/material';
 
+import { useRouter } from 'next/navigation'
+
 const Hero: React.FC = () => {
+  const router = useRouter();
   return (
     <Box
       sx={{
@@ -14,7 +18,7 @@ const Hero: React.FC = () => {
         alignItems: 'center'
       }}
     >
-      <Typography variant="h2" component="h1" sx={{ mb: 2, fontWeight: "bold", lineHeight:'2rem', fontFamily: ' var(--font-roboto-medium)'}}>
+      <Typography variant="h2" component="h1" sx={{ mb: 2, fontWeight: "bold", fontFamily: ' var(--font-roboto-medium)'}}>
         TIMELESS ELEGANCE
       </Typography>
       <Typography variant="subtitle1" sx={{ mb: 4 }}>
@@ -32,7 +36,7 @@ const Hero: React.FC = () => {
       </Box>
 
       {/* Call to Action Button */}
-      <Button variant="contained" size="large" sx={{ backgroundColor: "white", color: 'black' }}>
+      <Button variant="contained" size="large" sx={{ backgroundColor: "white", color: 'black' }} onClick={() => {router.push('/list')}}>
         View All Plates
       </Button>
     </Box>

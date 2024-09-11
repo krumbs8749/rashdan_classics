@@ -1,6 +1,10 @@
+"use client";
 import React from 'react';
-import { Typography, Grid, Container } from '@mui/material';
+import { Typography, Grid, Container, Button, Box } from '@mui/material';
 import PlateItem from './PlateItem';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import { useRouter } from 'next/navigation'
 
 const plates = [
   { plateNumber: 'KF 20', price: 'RM 40,000' },
@@ -15,6 +19,12 @@ const plates = [
 ];
 
 const PlatesGrid: React.FC = () => {
+
+   // Get theme and useMediaQuery to detect screen size
+   const theme = useTheme();
+   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+   const router = useRouter();
   return (
     <Container sx={{ 
       py: 6, 
@@ -29,13 +39,20 @@ const PlatesGrid: React.FC = () => {
       <Typography variant="h4" component="h2" gutterBottom textAlign="center" sx={{ mb: 8, fontWeight: 700, fontFamily: '(--font-roboto-medium)'}}>
         LATEST PLATE
       </Typography>
-      <Grid container spacing={2} justifyContent="center"  sx={{ py: 6, backgroundColor: 'white', mw: 0, width: "80%", border:"1px solid black", borderRadius: '10px' }}>
+      <Grid container spacing={2} justifyContent="space around"  sx={{ py: 6, pw: 6, backgroundColor: 'white', margin: 0, width: "100%", border:"1px solid black", borderRadius: '10px' }}>
         {plates.map((plate, index) => (
-          <Grid item key={index}>
-            <PlateItem plateNumber={plate.plateNumber} price={plate.price} />
+          <Grid item key={index} xs={6} sm={6} md={4} lg={3} sx={{padding: "1rem 1rem"}}>
+            <PlateItem plateNumber={plate.plateNumber} price={plate.price} isMobile={isMobile} />
           </Grid>
         ))}
       </Grid>
+
+      {/* View All Plates Button */}
+      <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }} onClick={() => {router.push('/list')}}>
+        <Button variant="contained" color="primary">
+          View All Plates
+        </Button>
+      </Box>
     </Container>
   );
 };
