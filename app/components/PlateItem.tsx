@@ -11,7 +11,7 @@ interface PlateItemProps {
 
 const PlateItem: React.FC<PlateItemProps> = ({ plateNumber, price, isMobile }) => {
   // WhatsApp message template with the dealer's number
-  const dealerWhatsAppNumber = "60123456789"; // Replace with the actual dealer number
+  const dealerWhatsAppNumber = "4917647621332"; // Replace with the actual dealer number
   const messageTemplate = `Hi, I am interested in the plate number ${plateNumber}. Can you provide more details?`;
 
   // Generate WhatsApp link
