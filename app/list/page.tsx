@@ -1,7 +1,21 @@
 "use client";
 import React, { useState } from "react";
-import { Box, Grid, Typography, TextField, Container, Button, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
-import PlateItem from "../components/PlateItem";  // Assuming this is the same PlateItem component you created earlier
+import {
+  Box,
+  Grid,
+  Typography,
+  TextField,
+  Container,
+  Button,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
+import PlateItem from "../components/PlateItem"; // Assuming this is the same PlateItem component you created earlier
+
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const NumberPlateList: React.FC = () => {
   const [plates, setPlates] = useState([
@@ -10,32 +24,50 @@ const NumberPlateList: React.FC = () => {
     { plateNumber: "KF 22", price: "RM 45,000" },
     // Add more plates as necessary
   ]);
-  
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [filters, setFilters] = useState({
     search: "",
     minPrice: "RM1,000",
     maxPrice: "RM10,000",
     type: "Golden Number",
-    digits: 1
+    digits: 1,
   });
 
   // Handle filter change
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>) => {
+  const handleFilterChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | { name?: string; value: unknown }
+    >
+  ) => {
     const { name, value } = event.target;
     setFilters({ ...filters, [name!]: value });
   };
 
   return (
-    <Container sx={{ maxWidth: '100vw !important', margin: 0, background: 'linear-gradient(to bottom, #E0FF24, white)', py: 6 }}>
+    <Container
+      sx={{
+        maxWidth: "100vw !important",
+        margin: 0,
+        background: "linear-gradient(to bottom, #E0FF24, white)",
+        py: 6,
+      }}
+    >
       {/* Search Bar and Filters */}
-      <Box sx={{  borderRadius: 2, p: 4, mb: 4 }}>
-        <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 4 }}>
+      <Box sx={{ borderRadius: 2, p: 4, mb: 4 }}>
+        <Typography
+          variant="h4"
+          component="h1"
+          sx={{ fontWeight: "bold", textAlign: "center", mb: 4 }}
+        >
           SEARCH FOR PLATE
         </Typography>
 
         <Grid container spacing={2} justifyContent="center">
           {/* Plate Search */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <TextField
               fullWidth
               variant="outlined"
@@ -81,11 +113,7 @@ const NumberPlateList: React.FC = () => {
           <Grid item xs={6} sm={3} md={2}>
             <FormControl fullWidth>
               <InputLabel>Type</InputLabel>
-              <Select
-                value={filters.type}
-                label="Type"
-                name="type"
-              >
+              <Select value={filters.type} label="Type" name="type">
                 <MenuItem value="Golden Number">Golden Number</MenuItem>
                 <MenuItem value="VIP Number">VIP Number</MenuItem>
               </Select>
@@ -109,8 +137,19 @@ const NumberPlateList: React.FC = () => {
           </Grid>
 
           {/* Advanced Search Button */}
-          <Grid item xs={12}>
-            <Button variant="contained" color="primary" startIcon={<i className="fas fa-filter"></i>}>
+          <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "white", // Set background to white
+                color: "black", // Set text color to black
+                "&:hover": {
+                  backgroundColor: "#f0f0f0", // Optional: Slightly darker white on hover
+                },
+                alignSelf: 'center'
+              }}
+              startIcon={<i className="fas fa-filter"></i>}
+            >
               Advanced Search
             </Button>
           </Grid>
@@ -120,15 +159,18 @@ const NumberPlateList: React.FC = () => {
       {/* Plates Grid */}
       <Grid container spacing={4}>
         {plates.map((plate, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <PlateItem plateNumber={plate.plateNumber} price={plate.price} />
+          <Grid item xs={6} sm={6} md={3} key={index}>
+            <PlateItem
+              plateNumber={plate.plateNumber}
+              price={plate.price}
+              isMobile={isMobile}
+            />
           </Grid>
         ))}
       </Grid>
 
-
       {/* Pagination */}
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
         <Button>1</Button>
         <Button>2</Button>
         <Button>3</Button>
