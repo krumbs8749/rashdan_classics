@@ -42,7 +42,6 @@ const NumberPlateList: React.FC = () => {
               label="Eg. E411"
               name="search"
               value={filters.search}
-              onChange={handleFilterChange}
             />
           </Grid>
 
@@ -54,7 +53,6 @@ const NumberPlateList: React.FC = () => {
                 value={filters.minPrice}
                 label="Price (Min)"
                 name="minPrice"
-                onChange={handleFilterChange}
               >
                 <MenuItem value="RM1,000">RM 1,000</MenuItem>
                 <MenuItem value="RM5,000">RM 5,000</MenuItem>
@@ -71,7 +69,6 @@ const NumberPlateList: React.FC = () => {
                 value={filters.maxPrice}
                 label="Price (Max)"
                 name="maxPrice"
-                onChange={handleFilterChange}
               >
                 <MenuItem value="RM10,000">RM 10,000</MenuItem>
                 <MenuItem value="RM50,000">RM 50,000</MenuItem>
@@ -88,7 +85,6 @@ const NumberPlateList: React.FC = () => {
                 value={filters.type}
                 label="Type"
                 name="type"
-                onChange={handleFilterChange}
               >
                 <MenuItem value="Golden Number">Golden Number</MenuItem>
                 <MenuItem value="VIP Number">VIP Number</MenuItem>
@@ -104,7 +100,6 @@ const NumberPlateList: React.FC = () => {
                 value={filters.digits}
                 label="No. of Digits"
                 name="digits"
-                onChange={handleFilterChange}
               >
                 <MenuItem value={1}>1</MenuItem>
                 <MenuItem value={2}>2</MenuItem>
