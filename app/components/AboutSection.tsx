@@ -5,7 +5,8 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination } from "swiper";
+import SwiperCore from "swiper";
+import { Pagination } from "swiper/modules";
 
 // Import Swiper styles
 import 'swiper/css';
@@ -90,7 +91,7 @@ const AboutSection: React.FC = () => {
           // Mobile View: Swiper Carousel with Pagination Dots and showing part of the next slide
           <Swiper
             spaceBetween={20}  // Space between slides
-            slidesPerView={1.2}  // Show a bit of the next slide
+            slidesPerView={1}  // Show a bit of the next slide
             pagination={{ clickable: true }}
             style={{ paddingBottom: '40px' }}  // Space for the pagination dots
           >
