@@ -15,6 +15,7 @@ import {
   FormControl,
   InputLabel,
   Select,
+  SelectChangeEvent,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Dropdown Icon
 import PlateItem from "../components/PlateItem";
@@ -62,10 +63,18 @@ const NumberPlateList: React.FC = () => {
     setCurrentPage(value);
   };
 
-  // Handle input change for numeric filters (minPrice, maxPrice, digits)
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // Separate handler for TextField inputs
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.target;
     setFilters({ ...filters, [name]: value });
+  };
+
+  // Separate handler for Select inputs (e.g., dropdowns)
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    const { name, value } = event.target;
+    setFilters({ ...filters, [name!]: value });
   };
 
   // Handle filter change from the dropdown
@@ -280,7 +289,7 @@ const NumberPlateList: React.FC = () => {
                 value={filters.type}
                 label="Type"
                 name="type"
-                onChange={handleInputChange}
+                onChange={handleSelectChange}
               >
                 <MenuItem value="">All</MenuItem>
                 <MenuItem value="Golden Number">Golden Number</MenuItem>
