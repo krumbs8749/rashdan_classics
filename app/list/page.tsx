@@ -15,7 +15,6 @@ import {
   FormControl,
   InputLabel,
   Select,
-  SelectChangeEvent,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Dropdown Icon
 import PlateItem from "../components/PlateItem";
@@ -64,7 +63,7 @@ const NumberPlateList: React.FC = () => {
   };
 
   // Handle input change for numeric filters (minPrice, maxPrice, digits)
-  const handleInputChange = (event: SelectChangeEvent<string>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setFilters({ ...filters, [name]: value });
   };
