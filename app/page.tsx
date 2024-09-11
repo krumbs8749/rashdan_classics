@@ -4,24 +4,23 @@ import UpdateSection from "./components/UpdateSection";
 import Hero from "./components/Hero";
 import "./globals.css"; // Global styles for your app
 
+import { AppProvider } from "./context/AppContext";
 
-
-
-export default function RootLayout () {
+export default function RootLayout() {
   return (
-      <>
-        {/* Use NavBar Component */}
+    <AppProvider>
+      {" "}
+      {/* Wrap the content inside AppProvider */}
+      {/* Main Content */}
+      <main>
+        {/* Use Hero Component */}
+        <Hero />
 
-        {/* Main Content */}
-        <main>
-          {/* Use Hero Component */}
-          <Hero />
-
+        {/* Other sections */}
         <PlatesGrid />
         <AboutSection />
         <UpdateSection />
-        </main>
-
-      </>
+      </main>
+    </AppProvider>
   );
 }

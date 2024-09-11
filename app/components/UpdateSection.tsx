@@ -1,8 +1,12 @@
+"use client";
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import bottomPic from '../images/bottom_pic.png'; // Import image from app/images
-
+import { useRouter } from "next/navigation";
 const UpdateSection: React.FC = () => {
+
+  const router = useRouter()
+
   return (
     <Box
       component="section"
@@ -59,6 +63,7 @@ const UpdateSection: React.FC = () => {
               backgroundColor: '#e0e0e0',
             },
           }}
+          onClick={() => router.push("/list")}
         >
           View All Plates
         </Button>

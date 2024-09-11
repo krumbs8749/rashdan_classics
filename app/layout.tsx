@@ -7,7 +7,8 @@ import "./globals.css";
 // Update metadata to reflect the purpose of the app
 export const metadata: Metadata = {
   title: "Rashdan Classics - Elegant Plates",
-  description: "Discover and purchase timeless number plates with Rashdan Classics.",
+  description:
+    "Discover and purchase timeless number plates with Rashdan Classics.",
 };
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,6 +27,7 @@ const robotoMedium = localFont({
   weight: "100 900",
 });
 
+import { AppProvider } from "./context/AppContext";
 
 export default function RootLayout({
   children,
@@ -34,11 +36,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${robotoMedium.variable}`}>
-        
-      <NavBar />
-        {children}
-        
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${robotoMedium.variable}`}
+      >
+        <NavBar />
+        <AppProvider>{children}</AppProvider>
+
         {/* Use Footer Component */}
         <Footer />
       </body>

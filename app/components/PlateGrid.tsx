@@ -6,20 +6,13 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/navigation";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"; // Import the arrow icon
+import { useAppContext } from "../context/AppContext";
 
-const plates = [
-  { plateNumber: "KF 20", price: "RM 40,000" },
-  { plateNumber: "KF 21", price: "RM 42,000" },
-  { plateNumber: "KF 22", price: "RM 45,000" },
-  { plateNumber: "KF 20", price: "RM 40,000" },
-  { plateNumber: "KF 21", price: "RM 42,000" },
-  { plateNumber: "KF 22", price: "RM 45,000" },
-  { plateNumber: "KF 20", price: "RM 40,000" },
-  { plateNumber: "KF 21", price: "RM 42,000" },
-  // Add more plates as needed
-];
+
 
 const PlatesGrid: React.FC = () => {
+  const { plates} = useAppContext();
+  const latestPlates = plates.slice(0, 12)
   // Get theme and useMediaQuery to detect screen size
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -61,7 +54,7 @@ const PlatesGrid: React.FC = () => {
           borderRadius: "10px",
         }}
       >
-        {plates.map((plate, index) => (
+        {latestPlates.map((plate, index) => (
           <Grid
             item
             key={index}
