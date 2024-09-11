@@ -15,6 +15,7 @@ import {
   FormControl,
   InputLabel,
   Select,
+  SelectChangeEvent,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Dropdown Icon
 import PlateItem from "../components/PlateItem";
@@ -40,32 +41,45 @@ const NumberPlateList: React.FC = () => {
   const itemsPerPage = 12; // Max 12 items per page
 
   // Menu anchor state
-  const [anchorElMinPrice, setAnchorElMinPrice] = useState<null | HTMLElement>(null);
-  const [anchorElMaxPrice, setAnchorElMaxPrice] = useState<null | HTMLElement>(null);
-  const [anchorElDigits, setAnchorElDigits] = useState<null | HTMLElement>(null);
+  const [anchorElMinPrice, setAnchorElMinPrice] = useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElMaxPrice, setAnchorElMaxPrice] = useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElDigits, setAnchorElDigits] = useState<null | HTMLElement>(
+    null
+  );
 
   const openMinPrice = Boolean(anchorElMinPrice);
   const openMaxPrice = Boolean(anchorElMaxPrice);
   const openDigits = Boolean(anchorElDigits);
 
   // Handle page change
-  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
     setCurrentPage(value);
   };
 
   // Handle input change for numeric filters (minPrice, maxPrice, digits)
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: SelectChangeEvent<string>) => {
     const { name, value } = event.target;
     setFilters({ ...filters, [name]: value });
   };
 
   // Handle filter change from the dropdown
-  const handleMenuSelect = (event: React.MouseEvent<HTMLElement>, type: string, value: string) => {
+  const handleMenuSelect = (
+    event: React.MouseEvent<HTMLElement>,
+    type: string,
+    value: string
+  ) => {
     const numericValue = value.replace(/[^0-9]/g, "");
     setFilters({ ...filters, [type]: numericValue });
-    if (type === 'minPrice') setAnchorElMinPrice(null);
-    if (type === 'maxPrice') setAnchorElMaxPrice(null);
-    if (type === 'digits') setAnchorElDigits(null);
+    if (type === "minPrice") setAnchorElMinPrice(null);
+    if (type === "maxPrice") setAnchorElMaxPrice(null);
+    if (type === "digits") setAnchorElDigits(null);
   };
 
   // Apply filters
@@ -97,19 +111,24 @@ const NumberPlateList: React.FC = () => {
     ? plates.filter((plate) => {
         const platePrice = convertPrice(plate.price);
         const minPrice = filters.minPrice ? convertPrice(filters.minPrice) : 0;
-        const maxPrice = filters.maxPrice ? convertPrice(filters.maxPrice) : Infinity;
+        const maxPrice = filters.maxPrice
+          ? convertPrice(filters.maxPrice)
+          : Infinity;
 
         const matchesSearch = plate.plateNumber
           .toLowerCase()
-          .replace(/\s+/g, '') // Ignore spaces in the plate number
-          .includes(filters.search.toLowerCase().replace(/\s+/g, '')); // Ignore spaces in the search input
+          .replace(/\s+/g, "") // Ignore spaces in the plate number
+          .includes(filters.search.toLowerCase().replace(/\s+/g, "")); // Ignore spaces in the search input
 
         const matchesPrice =
           (!filters.minPrice || platePrice >= minPrice) &&
           (!filters.maxPrice || platePrice <= maxPrice);
 
         const matchesType = !filters.type || plate.type === filters.type;
-        const matchesDigits = !filters.digits || plate.plateNumber.replace(/\s+/g, '').length === parseInt(filters.digits);
+        const matchesDigits =
+          !filters.digits ||
+          plate.plateNumber.replace(/\s+/g, "").length ===
+            parseInt(filters.digits);
 
         return matchesSearch && matchesPrice && matchesType && matchesDigits;
       })
@@ -125,10 +144,29 @@ const NumberPlateList: React.FC = () => {
   const totalPages = Math.ceil(filteredPlates.length / itemsPerPage);
 
   return (
-    <Container sx={{ maxWidth: "100vw !important", background: "white", margin: 0, padding: 0 }}>
+    <Container
+      sx={{
+        maxWidth: "100vw !important",
+        background: "white",
+        margin: 0,
+        padding: 0,
+        "&.MuiContainer-root": { padding: 0 },
+      }}
+    >
       {/* Search Bar and Filters */}
-      <Box sx={{ borderRadius: 2, p: 4, mb: 4, background: "linear-gradient(to bottom, #E0FF24, white)" }}>
-        <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", textAlign: "center", mb: 4 }}>
+      <Box
+        sx={{
+          borderRadius: 2,
+          p: 4,
+          mb: 4,
+          background: "linear-gradient(to bottom, #E0FF24, white)",
+        }}
+      >
+        <Typography
+          variant="h4"
+          component="h1"
+          sx={{ fontWeight: "bold", textAlign: "center", mb: 4 }}
+        >
           SEARCH FOR PLATE
         </Typography>
 
@@ -158,7 +196,9 @@ const NumberPlateList: React.FC = () => {
                 inputProps: { type: "number" },
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={(e) => setAnchorElMinPrice(e.currentTarget)}>
+                    <IconButton
+                      onClick={(e) => setAnchorElMinPrice(e.currentTarget)}
+                    >
                       <ArrowDropDownIcon />
                     </IconButton>
                   </InputAdornment>
@@ -170,9 +210,21 @@ const NumberPlateList: React.FC = () => {
               open={openMinPrice}
               onClose={() => setAnchorElMinPrice(null)}
             >
-              <MenuItem onClick={(e) => handleMenuSelect(e, "minPrice", "RM1,000")}>RM 1,000</MenuItem>
-              <MenuItem onClick={(e) => handleMenuSelect(e, "minPrice", "RM5,000")}>RM 5,000</MenuItem>
-              <MenuItem onClick={(e) => handleMenuSelect(e, "minPrice", "RM10,000")}>RM 10,000</MenuItem>
+              <MenuItem
+                onClick={(e) => handleMenuSelect(e, "minPrice", "RM1,000")}
+              >
+                RM 1,000
+              </MenuItem>
+              <MenuItem
+                onClick={(e) => handleMenuSelect(e, "minPrice", "RM5,000")}
+              >
+                RM 5,000
+              </MenuItem>
+              <MenuItem
+                onClick={(e) => handleMenuSelect(e, "minPrice", "RM10,000")}
+              >
+                RM 10,000
+              </MenuItem>
             </Menu>
           </Grid>
 
@@ -189,7 +241,9 @@ const NumberPlateList: React.FC = () => {
                 inputProps: { type: "number" },
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={(e) => setAnchorElMaxPrice(e.currentTarget)}>
+                    <IconButton
+                      onClick={(e) => setAnchorElMaxPrice(e.currentTarget)}
+                    >
                       <ArrowDropDownIcon />
                     </IconButton>
                   </InputAdornment>
@@ -201,9 +255,21 @@ const NumberPlateList: React.FC = () => {
               open={openMaxPrice}
               onClose={() => setAnchorElMaxPrice(null)}
             >
-              <MenuItem onClick={(e) => handleMenuSelect(e, "maxPrice", "RM10,000")}>RM 10,000</MenuItem>
-              <MenuItem onClick={(e) => handleMenuSelect(e, "maxPrice", "RM50,000")}>RM 50,000</MenuItem>
-              <MenuItem onClick={(e) => handleMenuSelect(e, "maxPrice", "RM100,000")}>RM 100,000</MenuItem>
+              <MenuItem
+                onClick={(e) => handleMenuSelect(e, "maxPrice", "RM10,000")}
+              >
+                RM 10,000
+              </MenuItem>
+              <MenuItem
+                onClick={(e) => handleMenuSelect(e, "maxPrice", "RM50,000")}
+              >
+                RM 50,000
+              </MenuItem>
+              <MenuItem
+                onClick={(e) => handleMenuSelect(e, "maxPrice", "RM100,000")}
+              >
+                RM 100,000
+              </MenuItem>
             </Menu>
           </Grid>
 
@@ -237,7 +303,9 @@ const NumberPlateList: React.FC = () => {
                 inputProps: { type: "number" },
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={(e) => setAnchorElDigits(e.currentTarget)}>
+                    <IconButton
+                      onClick={(e) => setAnchorElDigits(e.currentTarget)}
+                    >
                       <ArrowDropDownIcon />
                     </IconButton>
                   </InputAdornment>
@@ -249,9 +317,15 @@ const NumberPlateList: React.FC = () => {
               open={openDigits}
               onClose={() => setAnchorElDigits(null)}
             >
-              <MenuItem onClick={(e) => handleMenuSelect(e, "digits", "1")}>1</MenuItem>
-              <MenuItem onClick={(e) => handleMenuSelect(e, "digits", "2")}>2</MenuItem>
-              <MenuItem onClick={(e) => handleMenuSelect(e, "digits", "3")}>3</MenuItem>
+              <MenuItem onClick={(e) => handleMenuSelect(e, "digits", "1")}>
+                1
+              </MenuItem>
+              <MenuItem onClick={(e) => handleMenuSelect(e, "digits", "2")}>
+                2
+              </MenuItem>
+              <MenuItem onClick={(e) => handleMenuSelect(e, "digits", "3")}>
+                3
+              </MenuItem>
             </Menu>
           </Grid>
 
@@ -285,16 +359,31 @@ const NumberPlateList: React.FC = () => {
       </Box>
 
       {/* Plates Grid */}
-      <Grid container spacing={4} sx={{ background: "white", padding: "0 1rem" }}>
+      <Grid
+        container
+        spacing={4}
+        sx={{ background: "white", padding: "0 1rem" }}
+      >
         {paginatedPlates.map((plate, index) => (
           <Grid item xs={6} sm={6} md={3} key={index}>
-            <PlateItem plateNumber={plate.plateNumber} price={plate.price} isMobile={isMobile} />
+            <PlateItem
+              plateNumber={plate.plateNumber}
+              price={plate.price}
+              isMobile={isMobile}
+            />
           </Grid>
         ))}
       </Grid>
 
       {/* Pagination Controls */}
-      <Box sx={{ display: "flex", background: "white", justifyContent: "center", mt: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          background: "white",
+          justifyContent: "center",
+          mt: 4,
+        }}
+      >
         <Pagination
           count={totalPages}
           page={currentPage}

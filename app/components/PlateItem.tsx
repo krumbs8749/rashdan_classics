@@ -1,7 +1,6 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, IconButton } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp"; // MUI icon for WhatsApp
-
 import rcLogo from "../images/rc_logo.png"; // Import the Rashdan Classics logo
 
 interface PlateItemProps {
@@ -11,6 +10,13 @@ interface PlateItemProps {
 }
 
 const PlateItem: React.FC<PlateItemProps> = ({ plateNumber, price, isMobile }) => {
+  // WhatsApp message template with the dealer's number
+  const dealerWhatsAppNumber = "60123456789"; // Replace with the actual dealer number
+  const messageTemplate = `Hi, I am interested in the plate number ${plateNumber}. Can you provide more details?`;
+
+  // Generate WhatsApp link
+  const whatsappLink = `https://wa.me/${dealerWhatsAppNumber}?text=${encodeURIComponent(messageTemplate)}`;
+
   return (
     <Box
       sx={{
@@ -53,7 +59,7 @@ const PlateItem: React.FC<PlateItemProps> = ({ plateNumber, price, isMobile }) =
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "space-between", // Ensure price is on the left and icon is on the right
           alignItems: "center",
         }}
       >
@@ -68,8 +74,16 @@ const PlateItem: React.FC<PlateItemProps> = ({ plateNumber, price, isMobile }) =
           {price}
         </Typography>
 
-        {/* WhatsApp Icon */}
-        <WhatsAppIcon sx={{ color: "#25D366", fontSize: { xs: "20px", sm: "28px" } }} />
+        {/* WhatsApp Icon Button */}
+        <IconButton
+          href={whatsappLink}
+          target="_blank" // Open link in a new tab
+          sx={{
+            color: "#25D366", // WhatsApp green color
+          }}
+        >
+          <WhatsAppIcon fontSize="large" />
+        </IconButton>
       </Box>
     </Box>
   );
