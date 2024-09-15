@@ -1,20 +1,20 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState } from 'react';
 import {
   Box,
   Typography,
   Button,
   TextField,
   InputAdornment,
-} from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+} from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-import SearchIcon from "@mui/icons-material/Search"; // Import the search icon
-import { useRouter } from "next/navigation";
+import SearchIcon from '@mui/icons-material/Search'; // Import the search icon
+import { useRouter } from 'next/navigation';
 
 const Hero: React.FC = () => {
   const router = useRouter();
-  const [searchText, setSearchText] = useState(""); // State to track search input
+  const [searchText, setSearchText] = useState(''); // State to track search input
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value); // Update search text as user types
@@ -27,13 +27,13 @@ const Hero: React.FC = () => {
   return (
     <Box
       sx={{
-        textAlign: "center",
+        textAlign: 'center',
         py: 8,
-        background: "linear-gradient(to bottom, #E0FF24, white)",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        background: 'linear-gradient(to bottom, #E0FF24, white)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Typography
@@ -41,8 +41,8 @@ const Hero: React.FC = () => {
         component="h1"
         sx={{
           mb: 2,
-          fontWeight: "700",
-          fontFamily: " var(--font-roboto-medium)",
+          fontWeight: '700',
+          fontFamily: ' var(--font-roboto-medium)',
         }}
       >
         TIMELESS ELEGANCE
@@ -54,7 +54,7 @@ const Hero: React.FC = () => {
       {/* Search Bar */}
       <Box
         component="form"
-        sx={{ display: "flex", justifyContent: "center", mb: 4 }}
+        sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}
         onSubmit={(e) => {
           e.preventDefault();
           handleSearchSubmit();
@@ -66,28 +66,28 @@ const Hero: React.FC = () => {
           value={searchText}
           onChange={handleSearch}
           sx={{
-            backgroundColor: "white", // White background 
-            borderRadius: "8px", // Slightly rounded corners
-            width: "100%", // Full width
-            maxWidth: "400px", // Optional: max width for better responsiveness
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: "#ccc", // Light gray border color
+            backgroundColor: 'white', // White background
+            borderRadius: '8px', // Slightly rounded corners
+            width: '100%', // Full width
+            maxWidth: '400px', // Optional: max width for better responsiveness
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#ccc', // Light gray border color
               },
-              "&:hover fieldset": {
-                borderColor: "#aaa", // Slightly darker on hover
+              '&:hover fieldset': {
+                borderColor: '#aaa', // Slightly darker on hover
               },
-              "&.Mui-focused fieldset": {
-                borderColor: "#333", // Darker border when focused
+              '&.Mui-focused fieldset': {
+                borderColor: '#333', // Darker border when focused
               },
             },
-            padding: "0", // Optional: Adjust padding
+            padding: '0', // Optional: Adjust padding
           }}
           slotProps={{
             input: {
               endAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{ color: "#aaa" }} />{" "}
+                  <SearchIcon sx={{ color: '#aaa' }} />{' '}
                   {/* Light gray search icon */}
                 </InputAdornment>
               ),
@@ -101,15 +101,15 @@ const Hero: React.FC = () => {
         variant="contained"
         size="large"
         sx={{
-          backgroundColor: "white", // Set background to white
-          color: "black", // Set text color to black
-          "&:hover": {
-            backgroundColor: "#f0f0f0", // Optional: Slightly darker white on hover
+          backgroundColor: 'white', // Set background to white
+          color: 'black', // Set text color to black
+          '&:hover': {
+            backgroundColor: '#f0f0f0', // Optional: Slightly darker white on hover
           },
         }}
         endIcon={<ArrowForwardIcon />}
         onClick={() => {
-          router.push("/list");
+          router.push('/list');
         }}
       >
         View All Plates

@@ -1,5 +1,5 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -8,16 +8,16 @@ import {
   Drawer,
   Box,
   Typography,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import ChevronDownIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import rc_logo from "../images/rc_logo.png";
-import { useRouter } from "next/navigation";
-import Link from "next/link"; // Import Next.js Link for navigation
-import contactDealerGeneral from "./Contact";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import rc_logo from '../images/rc_logo.png';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link'; // Import Next.js Link for navigation
+import contactDealerGeneral from './Contact';
 
 const NavBar: React.FC = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -25,7 +25,7 @@ const NavBar: React.FC = () => {
 
   // Get theme and useMediaQuery to detect screen size
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Detect screen sizes smaller than 600px
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Detect screen sizes smaller than 600px
 
   // Toggle drawer
   const toggleDrawer =
@@ -35,9 +35,9 @@ const NavBar: React.FC = () => {
 
   // Menu items for both desktop and mobile
   const menuItems = [
-    { label: "Home", href: "/" },
-    { label: "Number Plate List", href: "/list", icon: <ChevronDownIcon />  },
-    { label: "About Us", href: "/about" },
+    { label: 'Home', href: '/' },
+    { label: 'Number Plate List', href: '/list', icon: <ChevronDownIcon /> },
+    { label: 'About Us', href: '/about' },
   ];
 
   const drawerItems = (
@@ -45,10 +45,10 @@ const NavBar: React.FC = () => {
       sx={{
         width: '100%',
         p: 2,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
       role="presentation"
       onClick={toggleDrawer(false)}
@@ -64,18 +64,18 @@ const NavBar: React.FC = () => {
       <Typography
         variant="h6"
         component="div"
-        sx={{ alignSelf: "flex-start", mb: "1rem" }}
+        sx={{ alignSelf: 'flex-start', mb: '1rem' }}
       >
         <img
           src={rc_logo.src}
           alt="Rashdan Classic Logo"
-          style={{ height: isMobile ? "25px" : "40px" }}
+          style={{ height: isMobile ? '25px' : '40px' }}
         />
       </Typography>
 
       {menuItems.map((item, index) => (
         <Link key={index} href={item.href} passHref>
-          <Button sx={{ color: "black", fontWeight: 700, fontSize: "1.3rem" }}>
+          <Button sx={{ color: 'black', fontWeight: 700, fontSize: '1.3rem' }}>
             {item.label}
             {item.icon && item.icon}
           </Button>
@@ -85,7 +85,7 @@ const NavBar: React.FC = () => {
         variant="contained"
         color="success"
         sx={{ marginTop: 2 }}
-        onClick={() => router.push("/contact")}
+        onClick={() => router.push('/contact')}
       >
         Contact Us
       </Button>
@@ -93,7 +93,7 @@ const NavBar: React.FC = () => {
   );
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: "#fff", color: "#000" }}>
+    <AppBar position="sticky" sx={{ backgroundColor: '#fff', color: '#000' }}>
       <Toolbar>
         {isMobile && (
           <>
@@ -129,15 +129,15 @@ const NavBar: React.FC = () => {
           <img
             src={rc_logo.src}
             alt="Rashdan Classic Logo"
-            style={{ height: isMobile ? "25px" : "40px" }}
+            style={{ height: isMobile ? '25px' : '40px' }}
           />
         </Typography>
 
         {!isMobile && (
-          <Box sx={{ display: "flex", gap: 2 }}>
+          <Box sx={{ display: 'flex', gap: 2 }}>
             {menuItems.map((item, index) => (
               <Link key={index} href={item.href} passHref>
-                <Button sx={{ color: "black", fontWeight: 700 }}>
+                <Button sx={{ color: 'black', fontWeight: 700 }}>
                   {item.label}
                 </Button>
               </Link>

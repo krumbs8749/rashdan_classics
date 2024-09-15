@@ -1,33 +1,33 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import NavBar from "./components/Navbar";
-import Footer from "./components/Footer";
-import "./globals.css";
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import NavBar from './components/Navbar';
+import Footer from './components/Footer';
+import './globals.css';
 
 // Update metadata to reflect the purpose of the app
 export const metadata: Metadata = {
-  title: "Rashdan Classics - Elegant Plates",
+  title: 'Rashdan Classics - Elegant Plates',
   description:
-    "Discover and purchase timeless number plates with Rashdan Classics.",
+    'Discover and purchase timeless number plates with Rashdan Classics.',
 };
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+  src: './fonts/GeistVF.woff',
+  variable: '--font-geist-sans',
+  weight: '100 900',
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+  src: './fonts/GeistMonoVF.woff',
+  variable: '--font-geist-mono',
+  weight: '100 900',
 });
 
 const robotoMedium = localFont({
-  src: "./fonts/RobotoMedium.woff",
-  variable: "--font-roboto-medium",
-  weight: "100 900",
+  src: './fonts/RobotoMedium.woff',
+  variable: '--font-roboto-medium',
+  weight: '100 900',
 });
 
-import { AppProvider } from "./context/AppContext";
+import { AppProvider } from './context/AppContext';
 
 export default function RootLayout({
   children,

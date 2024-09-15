@@ -1,19 +1,18 @@
-"use client";
+'use client';
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import bottomPic from '../images/bottom_pic.png'; // Import image from app/images
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 import contactDealerGeneral from './Contact';
 const UpdateSection: React.FC = () => {
-
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Box
       component="section"
       sx={{
         width: '100%',
-        height: '400px',  // Adjust height as per the image aspect ratio
+        height: '400px', // Adjust height as per the image aspect ratio
         backgroundImage: `url(${bottomPic.src})`,
         backgroundColor: 'white',
         backgroundPosition: 'center',
@@ -23,7 +22,7 @@ const UpdateSection: React.FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        px: 2,  // Adding some padding for small screens
+        px: 2, // Adding some padding for small screens
         py: 4,
       }}
     >
@@ -32,9 +31,9 @@ const UpdateSection: React.FC = () => {
         variant="h4"
         component="h2"
         sx={{
-          mb: 3,  // Margin bottom for spacing from buttons
+          mb: 3, // Margin bottom for spacing from buttons
           fontWeight: 'bold',
-          color: '#fff',  // White font for the heading
+          color: '#fff', // White font for the heading
         }}
       >
         Stay updated with us
@@ -44,18 +43,18 @@ const UpdateSection: React.FC = () => {
       <Box
         sx={{
           display: 'flex',
-          gap: 2,  // Space between buttons
+          gap: 2, // Space between buttons
           flexWrap: 'wrap',
-          justifyContent: 'center',  // Center buttons horizontally
-          alignItems: 'center',  // Align buttons in the center vertically
+          justifyContent: 'center', // Center buttons horizontally
+          alignItems: 'center', // Align buttons in the center vertically
         }}
       >
         {/* View All Plates Button */}
         <Button
           variant="contained"
           sx={{
-            backgroundColor: '#fff',  // White background
-            color: '#333',  // Black text
+            backgroundColor: '#fff', // White background
+            color: '#333', // Black text
             px: 3,
             py: 1,
             borderRadius: '8px',
@@ -64,7 +63,7 @@ const UpdateSection: React.FC = () => {
               backgroundColor: '#e0e0e0',
             },
           }}
-          onClick={() => router.push("/list")}
+          onClick={() => router.push('/list')}
         >
           View All Plates
         </Button>
@@ -74,15 +73,15 @@ const UpdateSection: React.FC = () => {
           variant="outlined"
           onClick={contactDealerGeneral}
           sx={{
-            color: '#fff',  // White text
-            borderColor: '#fff',  // White border
+            color: '#fff', // White text
+            borderColor: '#fff', // White border
             px: 3,
             py: 1,
             borderRadius: '8px',
             fontWeight: 'bold',
             '&:hover': {
               backgroundColor: '#fff',
-              color: '#333',  // Text turns black on hover
+              color: '#333', // Text turns black on hover
             },
           }}
         >

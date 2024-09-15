@@ -1,34 +1,32 @@
-"use client";
-import React from "react";
-import { Typography, Grid, Container, Button, Box } from "@mui/material";
-import PlateItem from "./PlateItem";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import { useRouter } from "next/navigation";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward"; // Import the arrow icon
-import { useAppContext } from "../context/AppContext";
-
-
+'use client';
+import React from 'react';
+import { Typography, Grid, Container, Button, Box } from '@mui/material';
+import PlateItem from './PlateItem';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import { useRouter } from 'next/navigation';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'; // Import the arrow icon
+import { useAppContext } from '../context/AppContext';
 
 const PlatesGrid: React.FC = () => {
-  const { plates} = useAppContext();
-  const latestPlates = plates.slice(0, 12)
+  const { plates } = useAppContext();
+  const latestPlates = plates.slice(0, 12);
   // Get theme and useMediaQuery to detect screen size
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const router = useRouter();
   return (
     <Container
       sx={{
         py: 6,
-        backgroundColor: "white",
+        backgroundColor: 'white',
         margin: 0,
-        maxWidth: "100vw !important",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        maxWidth: '100vw !important',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Typography
@@ -36,7 +34,7 @@ const PlatesGrid: React.FC = () => {
         component="h2"
         gutterBottom
         textAlign="center"
-        sx={{ mb: 8, fontWeight: 700, fontFamily: "(--font-roboto-medium)" }}
+        sx={{ mb: 8, fontWeight: 700, fontFamily: '(--font-roboto-medium)' }}
       >
         LATEST PLATE
       </Typography>
@@ -47,11 +45,11 @@ const PlatesGrid: React.FC = () => {
         sx={{
           py: 6,
           pw: 6,
-          backgroundColor: "white",
+          backgroundColor: 'white',
           margin: 0,
-          width: "100%",
-          border: "1px solid black",
-          borderRadius: "10px",
+          width: '100%',
+          border: '1px solid black',
+          borderRadius: '10px',
         }}
       >
         {latestPlates.map((plate, index) => (
@@ -62,7 +60,7 @@ const PlatesGrid: React.FC = () => {
             sm={6}
             md={4}
             lg={3}
-            sx={{ padding: "1rem 1rem" }}
+            sx={{ padding: '1rem 1rem' }}
           >
             <PlateItem
               plateNumber={plate.plateNumber}
@@ -74,21 +72,19 @@ const PlatesGrid: React.FC = () => {
       </Grid>
 
       {/* View All Plates Button */}
-      <Box
-        sx={{ display: "flex", justifyContent: "center", my: 4 }}
-      >
+      <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
         <Button
           variant="contained"
           sx={{
-            backgroundColor: "white", // Set background to white
-            color: "black", // Set text color to black
-            "&:hover": {
-              backgroundColor: "#f0f0f0", // Optional: Slightly darker white on hover
+            backgroundColor: 'white', // Set background to white
+            color: 'black', // Set text color to black
+            '&:hover': {
+              backgroundColor: '#f0f0f0', // Optional: Slightly darker white on hover
             },
           }}
           endIcon={<ArrowForwardIcon />}
           onClick={() => {
-            router.push("/list");
+            router.push('/list');
           }}
         >
           View All Plates
