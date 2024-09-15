@@ -1,8 +1,10 @@
+"use client";1
 import React from "react";
 import { Box, Typography, Container, Grid, Link } from "@mui/material";
 import rcLogo from "../images/rc_logo.png"; // Import the image from app/images
 
 import Divider from '@mui/material/Divider';
+import contactDealerGeneral from "./Contact";
 
 
 const Footer: React.FC = () => {
@@ -52,7 +54,7 @@ const Footer: React.FC = () => {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <Link
-                  href="#"
+                  href="/about"
                   color="inherit"
                   underline="hover"
                   sx={{ display: "block", mb: 1 }}
@@ -60,7 +62,7 @@ const Footer: React.FC = () => {
                   About Us
                 </Link>
                 <Link
-                  href="#"
+                  href="/list"
                   color="inherit"
                   underline="hover"
                   sx={{ display: "block", mb: 1 }}
@@ -72,6 +74,7 @@ const Footer: React.FC = () => {
                   color="inherit"
                   underline="hover"
                   sx={{ display: "block", mb: 1 }}
+                  onClick={contactDealerGeneral}
                 >
                   Contact Us
                 </Link>

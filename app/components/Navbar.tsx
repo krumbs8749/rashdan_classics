@@ -17,6 +17,7 @@ import { useTheme } from "@mui/material/styles";
 import rc_logo from "../images/rc_logo.png";
 import { useRouter } from "next/navigation";
 import Link from "next/link"; // Import Next.js Link for navigation
+import contactDealerGeneral from "./Contact";
 
 const NavBar: React.FC = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -36,7 +37,7 @@ const NavBar: React.FC = () => {
   const menuItems = [
     { label: "Home", href: "/" },
     { label: "Number Plate List", href: "/list", icon: <ChevronDownIcon />  },
-    { label: "About Us", href: "#" },
+    { label: "About Us", href: "/about" },
   ];
 
   const drawerItems = (
@@ -149,7 +150,7 @@ const NavBar: React.FC = () => {
           variant="contained"
           color="success"
           sx={{ marginLeft: 2 }}
-          onClick={() => router.push("/contact")}
+          onClick={contactDealerGeneral}
         >
           Contact Us
         </Button>

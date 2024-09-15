@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Grid,
@@ -22,11 +22,15 @@ import PlateItem from "../components/PlateItem";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useAppContext } from "../context/AppContext";
+import { useSearchParams } from "next/navigation";
 
 const NumberPlateList: React.FC = () => {
   const { plates } = useAppContext();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const searchParams = useSearchParams(); // Access search params
+  const searchQuery = searchParams.get("search") || "";
 
   const [filters, setFilters] = useState({
     search: "",
@@ -113,6 +117,14 @@ const NumberPlateList: React.FC = () => {
   const convertPrice = (price: string) => {
     return parseInt(price.replace(/[^0-9]/g, ""));
   };
+
+  useEffect(() => {
+    // Filter plates based on the search query
+    if(searchQuery && !filtersApplied) {
+      setFilters(prev => ({...prev, search: searchQuery}))
+      setFiltersApplied(true);
+    }
+  }, [searchQuery])
 
   // Filter the plates based on search and filters
   const filteredPlates = filtersApplied

@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import bottomPic from '../images/bottom_pic.png'; // Import image from app/images
 import { useRouter } from "next/navigation";
+import contactDealerGeneral from './Contact';
 const UpdateSection: React.FC = () => {
 
   const router = useRouter()
@@ -71,6 +72,7 @@ const UpdateSection: React.FC = () => {
         {/* Contact Us Button */}
         <Button
           variant="outlined"
+          onClick={contactDealerGeneral}
           sx={{
             color: '#fff',  // White text
             borderColor: '#fff',  // White border

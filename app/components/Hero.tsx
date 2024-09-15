@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -14,6 +14,16 @@ import { useRouter } from "next/navigation";
 
 const Hero: React.FC = () => {
   const router = useRouter();
+  const [searchText, setSearchText] = useState(""); // State to track search input
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(event.target.value); // Update search text as user types
+  };
+
+  const handleSearchSubmit = () => {
+    // Navigate to the list page with the search text as a query parameter
+    router.push(`/list?search=${encodeURIComponent(searchText)}`);
+  };
   return (
     <Box
       sx={{
@@ -45,10 +55,16 @@ const Hero: React.FC = () => {
       <Box
         component="form"
         sx={{ display: "flex", justifyContent: "center", mb: 4 }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSearchSubmit();
+        }}
       >
         <TextField
           variant="outlined"
           placeholder="Eg. E411"
+          value={searchText}
+          onChange={handleSearch}
           sx={{
             backgroundColor: "white", // White background 
             borderRadius: "8px", // Slightly rounded corners
